@@ -116,7 +116,6 @@ public class TestMain {
 	      
 	}
 	
-	// FileInputStream流和FileOutputStream的应用
 	private static void fileinoutputTest(){
 		  try {  
 	            File inFile = new File("src/com/javaIO/test/TestMain.java");  
@@ -134,62 +133,15 @@ public class TestMain {
 	        } 
 	}
 	
-	//将BufferedReader与标准的数据流相接 
-	private static void readWriteToFile() throws IOException{
-	    	InputStreamReader sin = new InputStreamReader(System.in);  
-		    BufferedReader bin = new BufferedReader(sin);  		  
-	        FileWriter out = new FileWriter("myfile.txt");  
-	        BufferedWriter bout = new BufferedWriter(out);  
-	        String s;  
-	        while ((s = bin.readLine()).length() > 0) {  
-	            bout.write(s, 0, s.length());  
-	        }  
-	} 
-	
-	/*
-	 * InputStream和OutputStream类处理的是字节流，数据流中的最小单位是字节(8个bit)
-Reader与Writer处理的是字符流，在处理字符流时涉及了字符编码的转换问题
-	 */
-	private static void readBuff(byte[] buff) throws IOException {
-		ByteArrayInputStream in = new ByteArrayInputStream(buff);
-		int data;
-		while ((data = in.read()) != -1)
-			System.out.print(data + "  ");
-		System.out.println();
-		in.close();
-	}
-
-	private static void encodeTest() {
-		try {
-			System.out.println("内存中采用unicode字符编码：");
-			char c = '好';
-			int lowBit = c & 0xFF;
-			int highBit = (c & 0xFF00) >> 8;
-			System.out.println("" + lowBit + "   " + highBit);
-			String s = "好";
-			System.out.println("本地操作系统默认字符编码：");
-			readBuff(s.getBytes());
-			System.out.println("采用GBK字符编码：");
-			readBuff(s.getBytes("GBK"));
-			System.out.println("采用UTF-8字符编码：");
-			readBuff(s.getBytes("UTF-8"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
 	/**
 	 * @author  zhangbo
 	 * 2017年2月15日  下午12:57:28
-	 * @throws IOException 
 	 */
-	public static void main(String[] args)   {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// fileInputStreamTest() ;
 	//	fileOutputStreamTest();
-		//fileinoutputTest();
-		encodeTest();
+		fileinoutputTest();
 		System.out.println("Hello World !!!");
 	}
 
